@@ -21,6 +21,7 @@ export default function Home() {
             selectedPlaylist: playlistResponse.body
         })
     }
+    console.log(selectedPlaylist?.name)
       
     return (
         <>
@@ -79,7 +80,6 @@ export default function Home() {
                             <div className='button-right-side'>
                                 right
                             </div>
-
                         </div>
                         <div className='card-action'>
                             <div className='card-action-footer'>
@@ -168,7 +168,6 @@ export default function Home() {
                     <div className={`music-list-artist
             ${open ? 'animate__fadeOut' : 'animate__fadeIn'}`}  >
                         <div className='header'>
-
                             <div className='header-title'>
                                 <h1>Top List</h1>
                             </div>

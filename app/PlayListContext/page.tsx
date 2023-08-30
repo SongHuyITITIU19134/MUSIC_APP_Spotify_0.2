@@ -4,52 +4,58 @@ import useSpotify from "@/hooks/page";
 import { useSession } from "next-auth/react";
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 
-const defaultPlaylistContextState: PlaylistContextState = {
-    playlists: [],
-    selectedPlaylistId: null,
-    selectedPlaylist: null
 
+const defaultPlaylistContextState: PlaylistContextState = {
+	playlists: [],
+	selectedPlaylistId: null,
+	selectedPlaylist: null
 }
 
 export const PlaylistContext = createContext<IPlaylistContext>({
-    playlistContextState: defaultPlaylistContextState,
-    updatePlaylistContextState:() => {}
+	playlistContextState: defaultPlaylistContextState,
+	updatePlaylistContextState: () => {}
 })
 
-export const usePlaylistContext = () => useContext(PlaylistContext);
+export const usePlaylistContext = () => useContext(PlaylistContext)
 
 const PlaylistContextProvider = ({ children }: { children: ReactNode }) => {
-    const spotifyApi = useSpotify();
-    const { data: session } = useSession()
-    const [playlistContextState, setPlaylistContextState] = useState(defaultPlaylistContextState)
+	const spotifyApi = useSpotify()
+	const { data: session } = useSession()
 
-    const updatePlaylistContextState = (updateObj: Partial<PlaylistContextState>) => {
-        setPlaylistContextState(previousPlaylistContextState => ({
-            ...previousPlaylistContextState,
-            ...updateObj
-        }))
-    }
-    useEffect(() => {
-        const getUserPlaylists = async () => {
-            const userPlaylistResponse = await spotifyApi.getUserPlaylists()
-            updatePlaylistContextState({ playlists: userPlaylistResponse.body.items })
-        }
-        if (spotifyApi.getAccessToken()) {
-            getUserPlaylists()
-        }
-    }, [session, spotifyApi])
+	const [playlistContextState, setPlaylistContextState] = useState(
+		defaultPlaylistContextState
+	)
 
+	const updatePlaylistContextState = (
+		updatedObj: Partial<PlaylistContextState>
+	) => {
+		setPlaylistContextState(previousPlaylistContextState => ({
+			...previousPlaylistContextState,
+			...updatedObj
+		}))
+	}
 
-    const playlistContextProviderData = {
-        playlistContextState,
-        updatePlaylistContextState
-    }
+	useEffect(() => {
+		const getUserPlaylists = async () => {
+			const userPlaylistResponse = await spotifyApi.getUserPlaylists()
+			updatePlaylistContextState({ playlists: userPlaylistResponse.body.items })
+		}
 
-    return (
-        <PlaylistContext.Provider value={playlistContextProviderData}>
-            {children}
-        </PlaylistContext.Provider>
-    )
+		if (spotifyApi.getAccessToken()) {
+			getUserPlaylists()
+		}
+	}, [session, spotifyApi])
+
+	const playlistContextProviderData = {
+		playlistContextState,
+		updatePlaylistContextState
+	}
+
+	return (
+		<PlaylistContext.Provider value={playlistContextProviderData}>
+			{children}
+		</PlaylistContext.Provider>
+	)
 }
 
-export default PlaylistContextProvider;
+export default PlaylistContextProvider

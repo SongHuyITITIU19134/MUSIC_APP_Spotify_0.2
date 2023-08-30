@@ -64,7 +64,7 @@ export default function Home() {
                     </div>
                 </div>
                     <div className= {`music-box
-            ${open ? 'animation' : 'hiden'}`}>
+            ${open ? 'animation' : ''}`}>
                         <MusicPlay />
                     </div>
                 
@@ -94,9 +94,13 @@ export default function Home() {
                             />
                             <div className="bottom-left">Name</div>
                         </div>
+                    <section>
+                        {
+                            selectedPlaylist && (
+                                <>
                         <div className="head-trending">
                             <div className="title-trending">
-                                <h1>Trending</h1>
+                                <h1>Your Playlist Music</h1>
                             </div>
                             <div className="see-all-trending">
                                 <a href='#'>See All</a>
@@ -108,6 +112,11 @@ export default function Home() {
                         <div className='main-trending'>
                             <Songs />
                         </div>
+                                </>
+                            )
+                        }
+
+                    </section>
 
                     </div>
                     <div className={`music-list-artist

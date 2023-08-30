@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import AuthProvider from './AuthContext/AuthProvider'
+import SongContextProvider from './PlayListContext/SongContext'
 import PlaylistContextProvider from './PlayListContext/page'
 import './globals.css'
 import Navbar from './navbar/page'
-import SongContextProvider from './PlayListContext/SongContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,20 +19,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="background-1">
-          <AuthProvider>
-            <SongContextProvider>
-            <PlaylistContextProvider>
-              <div className='container'>
-                <Navbar />
-                {children}
-              </div>
-            </PlaylistContextProvider>
-            </SongContextProvider>
-          </AuthProvider>
-        </div>
-      </body>
+      <AuthProvider>
+        <SongContextProvider>
+          <body className={inter.className}>
+            <div className="background-1">
+              <PlaylistContextProvider>
+                <div className='container'>
+                  <Navbar />
+                  {children}
+                </div>
+              </PlaylistContextProvider>
+            </div>
+          </body>
+        </SongContextProvider>
+      </AuthProvider>
     </html>
   )
 }

@@ -2,7 +2,7 @@
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import { Button } from '@mui/material';
 import { useState } from 'react';
-import Song from '../../components/Songs';
+import Song from '../components/Song';
 import style from './music.module.css';
 
 
@@ -13,7 +13,7 @@ const Music = () => {
         Related,
     }
     const [status, setStatus] = useState(Status.Next);
-    console.log(status)
+   
     return (
         <div className={style.cover}>
             <div className={style.image}>
@@ -51,7 +51,7 @@ const Music = () => {
                                     Title
                                 </div>
                                 <div className={style.name}>
-                                    <Song />
+                                
                                 </div>
                             </div>
                             <div className={style.time}>

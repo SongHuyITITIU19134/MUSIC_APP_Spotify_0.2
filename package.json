@@ -16,7 +16,7 @@
     "@mui/material": "^5.14.5",
     "@spotify/web-api-ts-sdk": "^1.1.0",
     "@types/node": "20.5.0",
-    "@types/react": "18.2.20",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "18.2.7",
     "animate.css": "^4.1.1",
     "eslint": "8.47.0",

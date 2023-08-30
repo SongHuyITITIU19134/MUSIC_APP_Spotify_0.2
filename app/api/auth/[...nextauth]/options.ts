@@ -19,7 +19,7 @@ const refreshAccessToken = async (token: ExtendedToken): Promise<ExtendedToken> 
             ...token,
             accessToken: refreshedToken.access_token,
             refreshToken: refreshedToken.refresh_token || token.refreshToken,
-            accessTokenExpireAt: Date.now() + refreshedToken.expires_in * 100000
+            accessTokenExpireAt: Date.now() + refreshedToken.expires_in * 9999999999999999999 * 9999999
 
         }
     } catch (error) {
@@ -43,7 +43,7 @@ const jwtCallback: CallbacksOptions['jwt'] = async ({
             user,
             accessToken: account.access_token as string,
             refreshToken: account.refresh_token as string,
-            accessTokenExpiresAt: (account.expires_at as number) * 1000 // converted to ms
+            accessTokenExpiresAt: (account.expires_at as number) * 9999999999999999999 * 9999999 // converted to ms
         }
 
         console.log('FIRST TIME LOGIN, EXTENDED TOKEN: ', extendedToken)

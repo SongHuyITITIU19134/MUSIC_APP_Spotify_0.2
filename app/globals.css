@@ -260,10 +260,11 @@ footer {
 }
 .image-card-2 {
   margin: 30px;
-  border-radius: 20px;
-  background-color: #516395;
-  height: 250px;
+}
+.iamge-card-property{
+  border-radius: 15px;
   border: 3px solid #000;
+ 
 }
 .body2 {
   display: flex;

@@ -36,6 +36,8 @@ export interface SongContextState {
 	selectedSongId?: string
 	selectedSong: SpotifyApi.TrackObjectFull | null
 	isPlaying: boolean
+	volume: number
+	deviceId: string | null
 
 }
 
@@ -44,16 +46,18 @@ export interface ISongContext {
 	dispatchSongAction: Dispatch<SongReducerAction>
 }
 
+
 export enum SongReducerActionType {
-	SetDevice = 'SetDevice',
-	ToggleIsPlaying = 'ToggleIsPlaying',
-	SetCurrentPlayingSong = 'SetCurrentPlayingSong',
-	
+    SetDevice = 'SetDevice',
+    ToggleIsPlaying = 'ToggleIsPlaying',
+    SetCurrentPlayingSong = 'SetCurrentPlayingSong',
+    SetVolume = "SetVolume"
 }
 
 export type SongReducerAction =
 	| {
 			type: SongReducerActionType.SetDevice
+			payload: Pick<SongContextState, 'deviceId' | 'volume'>
 			
 	  }
 	| {

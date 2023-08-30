@@ -5,7 +5,7 @@ import Song from './Song'
 const Songs = () => {
     const {playlistContextState: {selectedPlaylist} } = usePlaylistContext();
 
-  console.log(selectedPlaylist)
+
     if(!selectedPlaylist){
       return null
     }

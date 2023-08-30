@@ -5,24 +5,27 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { usePlaylistContext } from '../PlayListContext/page';
+import Songs from '../components/Songs';
+import MusicPlay from '../components/MusicPlay';
 
 export default function Home() {
     const [open, setOpen] = useState(false);
     const { data: session } = useSession();
     const spotifyApi = useSpotify()
     // Display Album
-    const { playlistContextState: { playlists,selectedPlaylist, selectedPlaylistId }, updatePlaylistContextState
+    const { playlistContextState: { playlists, selectedPlaylist, selectedPlaylistId }, updatePlaylistContextState
     } = usePlaylistContext();
 
     const setSelectPlaylist = async (playlistId: string) => {
-        const playlistResponse = await spotifyApi.getPlaylist(playlistId)
+        const playlistResponse = await spotifyApi.getPlaylist(playlistId);
         updatePlaylistContextState({
             selectedPlaylistId: playlistId,
             selectedPlaylist: playlistResponse.body
-        })
+        });
+
     }
-    console.log(selectedPlaylist?.name)
-      
+
+
     return (
         <>
             <div className={`app_music
@@ -31,7 +34,9 @@ export default function Home() {
                 <div className='head'>
                     <div className='title'>
                         <h1 className='h1'>Next Song</h1>
+                        <div>
 
+                        </div>
                     </div>
                     <div className='button-add'>
                         <div className='button-add-property'><button>Add more</button>
@@ -39,6 +44,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="app">
+               
                     <div className='card-music'>
                         <div className='image-music-card'>
                             <Image
@@ -49,8 +55,7 @@ export default function Home() {
                                 alt="Picture of the author"
                             />
                         </div>
-                        <div>
-                        </div>
+            
                         <div className='title-card'>
                             aaaa
                         </div>
@@ -59,7 +64,8 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className='music-box'>
+                <MusicPlay/>
+                {/* <div className='music-box'>
                     <div className='card-music-2'>
                         <a href='video'><div className='image-card-2'>
 
@@ -70,15 +76,6 @@ export default function Home() {
                             </div>
                             <div className='card-author-2'>
                                 author
-                            </div>
-                        </div>
-                        <div className='bar-action'>
-
-                            <div className='button-left-side'>
-
-                            </div>
-                            <div className='button-right-side'>
-                                right
                             </div>
                         </div>
                         <div className='card-action'>
@@ -116,7 +113,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className='slide-right'>
                 <div className='button1'>
@@ -125,45 +122,38 @@ export default function Home() {
                 <div className='music-list'>
                     <div className='music-main'>
                         <h1>Hello, {session?.user?.name}</h1>
+
+                        <Image
+                            src={session?.user?.image || '/COVER-Music.png'}
+                            alt='User Avatar'
+                            height={40}
+                            width={40}
+                        />
                         <div className='main-image'>
                             <Image
                                 className='home-image'
                                 src='/COVER-Music.png'
-                                width={903}
-                                height={403}
+                                width={803}
+                                height={303}
                                 alt='Image Cover Music'
                             />
                             <div className="bottom-left">Name</div>
                         </div>
-                        <div className='main-trending'>
-                            <div className="head-trending">
-                                <div className="title-trending">
-                                    <h1>Trending</h1>
-                                </div>
-                                <div className="see-all-trending">
-                                    <a href='#'>See All</a>
-                                </div>
+                        <div className="head-trending">
+                            <div className="title-trending">
+                                <h1>Trending</h1>
                             </div>
-
-                            <div className='group-trending'>
-                                <div className='number-trending'>
-                                   <h1>{selectedPlaylist?.name}</h1>
-                                </div>
-                                <div className="image-trending">
-                                    image
-                                </div>
-                                <div className="time-trending">
-                                    time
-                                </div>
-                                <div className="viewers-trending">
-                                    viewers
-                                </div>
-                                <div className="action-trending">
-                                    action
-                                </div>
-
+                            <div className="see-all-trending">
+                                <a href='#'>See All</a>
                             </div>
                         </div>
+                        <div className='main-trending'>
+                           
+                        </div>
+                        <div className='main-trending'>
+                            <Songs />
+                        </div>
+                      
                     </div>
                     <div className={`music-list-artist
             ${open ? 'animate__fadeOut' : 'animate__fadeIn'}`}  >
@@ -253,33 +243,20 @@ export default function Home() {
                         </div>
                         <div className='your_music'>
                             <h1>Your Music</h1>
-                            <div className='card_fav'>
-                                <div className='card_fav_img'>
-                                    <Image
-                                        className='home-image'
-                                        src='/COVER-Music.png'
-                                        width={161}
-                                        height={120}
-                                        alt='Image Cover Music'
-                                    />
-                                </div>
-
-                                <div className='card_fav_name'>
-                                    {playlists.map(({ id, name }) => (
+                            <div className='cover_fav_music'>
+                                {playlists.map(({ id, name, images }) => (
+                                    // eslint-disable-next-line react/jsx-key
+                                    <div className='card_fav'>
+                                        <div className='card_fav_img' onClick={() => setSelectPlaylist(id)}>
+                                            <Image className='card_image_fav' src={images[0].url} width={100} height={100} alt='image' />
+                                           
+                                        </div>
                                         <p
-                                            key={id}
-                                            className='cursor-pointer hover:text-white'
-                                            onClick={() => {
-                                                setSelectPlaylist(id)
-                                            }}
-                                        >
-                                            {name}
-                                        </p>
-                                    ))}
-                                </div>
-                                <div className='card_fav_author'>
-                                    <p>Author</p>
-                                </div>
+                                                className='card_fav_text'>
+                                                    {name}
+                                            </p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

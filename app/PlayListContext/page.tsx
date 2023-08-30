@@ -13,7 +13,7 @@ const defaultPlaylistContextState: PlaylistContextState = {
 
 export const PlaylistContext = createContext<IPlaylistContext>({
     playlistContextState: defaultPlaylistContextState,
-    updatePlaylistContextState:() => {},
+    updatePlaylistContextState:() => {}
 })
 
 export const usePlaylistContext = () => useContext(PlaylistContext);
@@ -41,7 +41,8 @@ const PlaylistContextProvider = ({ children }: { children: ReactNode }) => {
 
 
     const playlistContextProviderData = {
-        playlistContextState
+        playlistContextState,
+        updatePlaylistContextState
     }
 
     return (

@@ -24,11 +24,12 @@ export interface PlaylistContextState {
 	playlists: SpotifyApi.PlaylistObjectSimplified[];
 	selectedPlaylistId: string | null;
 	selectedPlaylist: SpotifyApi.SinglePlaylistResponse | null;
-
+	
 }
 export interface IPlaylistContext {
 	playlistContextState: PlaylistContextState;
-	updatePlaylistContextState: (updateObj: Partial<PlaylistContextState>) => void;
+	updatePlaylistContextState: (
+		updateObj: Partial<PlaylistContextState>) => void;
 
 }
 

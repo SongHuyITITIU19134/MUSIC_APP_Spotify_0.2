@@ -1,8 +1,9 @@
 "use client"
-import React, { useState } from 'react'
-import style from './music.module.css'
-import { Button } from '@mui/material';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
+import { Button } from '@mui/material';
+import { useState } from 'react';
+import Song from '../../components/Songs';
+import style from './music.module.css';
 
 
 const Music = () => {
@@ -21,20 +22,20 @@ const Music = () => {
             <div className={style.playlist}>
                 <div className={style.action}>
                     <div className={style.next} style={{ borderBottom: status === 0 ? '5px solid #FFF' : '0' }}>
-                        <Button sx={{ fontSize: 17}} variant="contained" onClick={() => setStatus(Status.Next)} >
+                        <Button sx={{ fontSize: 17 }} variant="contained" onClick={() => setStatus(Status.Next)} >
                             Next
                         </Button>
                         {
-                            
+
                         }
                     </div>
                     <div className={style.lyric} style={{ borderBottom: status === 1 ? '5px solid #FFF' : '0' }}>
-                        <Button sx={{ fontSize: 17}} variant="contained" onClick={() => setStatus(Status.Lyric)} >
+                        <Button sx={{ fontSize: 17 }} variant="contained" onClick={() => setStatus(Status.Lyric)} >
                             Lyric
                         </Button>
                     </div>
                     <div className={style.related} style={{ borderBottom: status === 2 ? '5px solid #FFF' : '0' }}>
-                        <Button sx={{ fontSize: 17}} variant="contained" onClick={() => setStatus(Status.Related)} >
+                        <Button sx={{ fontSize: 17 }} variant="contained" onClick={() => setStatus(Status.Related)} >
                             Related
                         </Button>
                     </div>
@@ -47,10 +48,10 @@ const Music = () => {
                             </div>
                             <div className={style.infor}>
                                 <div className={style.title}>
-                                Title
+                                    Title
                                 </div>
                                 <div className={style.name}>
-                                name
+                                    <Song />
                                 </div>
                             </div>
                             <div className={style.time}>
@@ -58,13 +59,13 @@ const Music = () => {
                             </div>
                             <div className={style.action_song}>
                                 <Button variant='contained'>
-                                <MoreVertOutlinedIcon/>
+                                    <MoreVertOutlinedIcon />
                                 </Button>
                             </div>
                         </div>
                     ) : status == 1 ? (
                         <div className={style.lyric_song}>
-                                   <h1>Lyric</h1>
+                            <h1>Lyric</h1>
                         </div>
                     ) : status == 2 ? (
                         <div className={style.next_song}>
@@ -73,10 +74,10 @@ const Music = () => {
                             </div>
                             <div className={style.infor}>
                                 <div className={style.title}>
-                                Title
+                                    Title
                                 </div>
                                 <div className={style.name}>
-                                name
+                                    name
                                 </div>
                             </div>
                             <div className={style.time}>
@@ -84,7 +85,7 @@ const Music = () => {
                             </div>
                             <div className={style.action_song}>
                                 <Button variant='contained'>
-                                <MoreVertOutlinedIcon/>
+                                    <MoreVertOutlinedIcon />
                                 </Button>
                             </div>
                         </div>

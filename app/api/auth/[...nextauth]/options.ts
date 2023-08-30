@@ -19,7 +19,7 @@ const refreshAccessToken = async (token: ExtendedToken): Promise<ExtendedToken> 
             ...token,
             accessToken: refreshedToken.access_token,
             refreshToken: refreshedToken.refresh_token || token.refreshToken,
-            accessTokenExpireAt: Date.now() + refreshedToken.expires_in * 1000
+            accessTokenExpireAt: Date.now() + refreshedToken.expires_in * 100000
 
         }
     } catch (error) {

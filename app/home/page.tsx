@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { usePlaylistContext } from '../PlayListContext/page';
 import MusicPlay from '../components/MusicPlay';
 import Songs from '../components/Songs';
+import { HideImage } from '@mui/icons-material';
+import { styled } from '@mui/material';
 
 export default function Home() {
     const [open, setOpen] = useState(false);
@@ -24,13 +26,16 @@ export default function Home() {
         });
 
     }
+    
 
 
     return (
         <>
             <div className={`app_music
-            ${open ? 'animation' : ''}`} style={{ width: open ? 500 : 0 }}
+            ${open ? '' : ''}`} style={{ width: open ? 500 : 0 }}
             >
+                {open ?
+                <>
                 <div className='head'>
                     <div className='title'>
                         <h1 className='h1'>Next Song</h1>
@@ -43,31 +48,35 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="app">
-                    <div className='card-music'>
-                        <div className='image-music-card'>
-                            <Image
-                                className='boder-image'
-                                src="/COVER-Music.png"
-                                width={130}
-                                height={100}
-                                alt="Picture of the author"
-                            />
+                        <div className="app">
+                            <div className='card-music'>
+                                <div className='image-music-card'>
+                                    <Image
+                                        className='boder-image'
+                                        src="/COVER-Music.png"
+                                        width={130}
+                                        height={100}
+                                        alt="Picture of the author"
+                                    />
+                                </div>
+
+                                <div className='title-card'>
+                                    aaaa
+                                </div>
+                                <div className='author-card'>
+                                    aasdas
+                                </div>
+                            </div>
+                        </div>
+                        <div className={`music-box
+            ${open ? 'animate__fadeIn' : 'animate__fadeOut'}`} >
+                            <MusicPlay />
                         </div>
 
-                        <div className='title-card'>
-                            aaaa
-                        </div>
-                        <div className='author-card'>
-                            aasdas
-                        </div>
-                    </div>
-                </div>
-                    <div className= {`music-box
-            ${open ? 'animation' : ''}`}>
-                        <MusicPlay />
-                    </div>
-                
+                    </>
+                    : <></>
+                }
+
 
             </div>
             <div className='slide-right'>
@@ -94,29 +103,32 @@ export default function Home() {
                             />
                             <div className="bottom-left">Name</div>
                         </div>
-                    <section>
-                        {
-                            selectedPlaylist && (
-                                <>
-                        <div className="head-trending">
-                            <div className="title-trending">
-                                <h1>Your Playlist Music</h1>
-                            </div>
-                            <div className="see-all-trending">
-                                <a href='#'>See All</a>
-                            </div>
-                        </div>
-                        <div className='main-trending'>
+                        <section>
+                            {
+                                selectedPlaylist && (
+                                    <>
+                                        <div className="head-trending">
+                                            <div className="title-trending">
+                                                <h1>Your Playlist Music</h1>
+                                            </div>
+                                            <div className="see-all-trending">
+                                                <a href='#'>See All</a>
+                                            </div>
+                                        </div>
+                                        <div className='main-trending'>
 
-                        </div>
-                        <div className='main-trending'>
-                            <Songs />
-                        </div>
-                                </>
-                            )
-                        }
+                                        </div>
+                                        {
+                                            <div className='main-trending'>
+                                                <Songs />
+                                            </div>
+                                        }
 
-                    </section>
+                                    </>
+                                )
+                            }
+
+                        </section>
 
                     </div>
                     <div className={`music-list-artist

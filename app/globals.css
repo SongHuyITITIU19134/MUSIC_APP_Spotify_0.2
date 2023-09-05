@@ -39,6 +39,7 @@ a {
 }
 
 .app_music {
+  margin-left: 20px;
   border-radius: 50px 0px 0px 50px;
   /* flex-basis: 60%; */
   color: black;
@@ -391,7 +392,7 @@ footer {
   padding-bottom: 10px;
 }
 .hiden {
-  opacity: 0;
+ opacity: 0;
 }
 
 .cover_fav_music {
@@ -432,7 +433,7 @@ footer {
 }
 .animate__fadeIn {
   animation: bounceIn;
-  animation-duration: 1s;
+  animation-duration: 3s;
 }
 .animation {
   margin: 10px;

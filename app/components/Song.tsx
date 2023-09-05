@@ -45,7 +45,7 @@ const Song = ({ item: { track }, itemIndex }: Props) => {
             <div className='group-trending' >
                 <div className='number-trending'>
                     <p className="text-trending-number">
-                        {itemIndex < 10 ? '0' + itemIndex : itemIndex + 1}
+                        {itemIndex < 10 ? '0' + itemIndex  : itemIndex + 1}
                     </p>
                 </div>
                 <div className="image-trending ">
